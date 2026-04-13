@@ -1,0 +1,415 @@
+{
+    "voice_triggers": {
+        "show limits": "limits",
+        "hey":   "acknowledge",
+        "drop":        "drop",
+        "say hello":   "wave",
+        "move box 1": "box1_routine1",
+        "move box 2": "box2_routine1",
+        "move box 3": "box3_routine1",
+        "reverse box 1": "box1_routine_reverse",
+        "reverse box 2": "box2_routine_reverse",
+        "reverse box 3": "box3_routine_reverse"
+    },
+
+    "gesture_triggers": {
+        "Pointing_Up":    "acknowledge",
+        "Victory":        "wave",
+        "ILoveYou":       "home",
+        "Closed_Fist":    null,
+        "Open_Palm":      null,
+        "Thumb_Up":       "box1_routine1",
+        "Thumb_Down":     "box1_routine_reverse"
+    },
+
+    "home": {
+        "steps": [
+            {"type": "home"}
+        ]
+    },
+
+    "limits": {
+        "steps": [
+            {"type": "home"},
+            {"type": "move", "axis": "T1_E", "target": "min", "return_zero": true, "wait": 1.0},
+            {"type": "move", "axis": "Z",    "target": "min", "return_zero": true, "wait": 1.0},
+            {"type": "move", "axis": "Y",    "target": "min", "return_zero": true, "wait": 1.0},
+            {"type": "move", "axis": "X",    "target": "min", "return_zero": true, "wait": 1.0},
+            {"type": "move", "axis": "T0_E", "target": "min", "return_zero": true, "wait": 1.0},
+            {"type": "servo", "value": 0,  "wait": 1.0},
+            {"type": "servo", "value": 45, "wait": 1.0},
+            {"type": "servo", "value": 0,  "wait": 1.0},
+            {"type": "servo", "value": 90, "wait": 1.0}
+        ]
+    },
+
+    "acknowledge": {
+        "steps": [
+            {"type": "raw", "cmd": "G91",          "wait": 0.0},
+            {"type": "raw", "cmd": "G1 X2 F1000",  "wait": 0.5},
+            {"type": "raw", "cmd": "G1 X-4 F1000", "wait": 0.5},
+            {"type": "raw", "cmd": "G1 X2 F1000",  "wait": 0.5}
+        ]
+    },
+
+    "drop": {
+        "steps": [
+            {"type": "servo", "value": 0, "wait": 0.5}
+        ]
+    },
+
+    "wave": {
+        "steps": [
+            {"type": "absolute", "X": 0.0, "Y": -360.0, "Z": 8.8, "T0_E": 0.0, "T1_E": 0.0, "wait": 1.0},
+            {"type": "raw", "cmd": "G91",            "wait": 0.0},
+            {"type": "raw", "cmd": "G1 Y-100 F10000","wait": 0.7},
+            {"type": "raw", "cmd": "G1 Y200 F10000", "wait": 0.7},
+            {"type": "raw", "cmd": "G1 Y-100 F10000","wait": 0.7},
+            {"type": "raw", "cmd": "G1 X2 F1000",   "wait": 0.5},
+            {"type": "raw", "cmd": "G1 X-4 F1000",  "wait": 0.5},
+            {"type": "raw", "cmd": "G1 X4 F1000",   "wait": 0.5},
+            {"type": "raw", "cmd": "G1 X-2 F1000",  "wait": 0.5},
+            {"type": "servo", "value": 0,  "wait": 0.5},
+            {"type": "servo", "value": 90, "wait": 0.5},
+            {"type": "servo", "value": 0,  "wait": 0.5},
+            {"type": "servo", "value": 90, "wait": 0.5}
+        ]
+    },
+
+    "waterbottle_routine1": {
+        "steps": [
+            {"type": "home"},
+
+            {"type": "move_joint", "axis": "T1_E", "target": -5.2,   "wait": 1},
+            {"type": "move_joint", "axis": "T0_E", "target": -3.36,  "wait": 1},
+            {"type": "servo",      "value": 0,                        "wait": 0.4},
+            {"type": "move_joint", "axis": "X",    "target": 0.0,    "wait": 0.4},
+            {"type": "move_joint", "axis": "Y",    "target": -648.0, "wait": 4},
+            {"type": "move_joint", "axis": "Z",    "target": 13.2,   "wait": 2},
+            {"type": "servo",      "value": 90,                       "wait": 0.6},
+
+            {"type": "move_joint", "axis": "T1_E", "target": -5.2,   "wait": 0.4},
+            {"type": "move_joint", "axis": "Z",    "target": 8.8,    "wait": 2},
+            {"type": "move_joint", "axis": "T0_E", "target": -1.26,  "wait": 1},
+            {"type": "move_joint", "axis": "Y",    "target": -360.0, "wait": 2},
+            {"type": "move_joint", "axis": "T0_E", "target": -0.42,  "wait": 1},
+
+            {"type": "move_joint", "axis": "T1_E", "target": 5.2,    "wait": 1},
+
+            {"type": "move_joint", "axis": "T0_E", "target": -1.26,  "wait": 1},
+            {"type": "move_joint", "axis": "Y",    "target": -648.0, "wait": 4},
+            {"type": "move_joint", "axis": "T0_E", "target": -3.36,  "wait": 1},
+            {"type": "move_joint", "axis": "Z",    "target": 13.2,   "wait": 2},
+            {"type": "move_joint", "axis": "X",    "target": 0.0,    "wait": 0.4},
+            {"type": "servo",      "value": 0,                        "wait": 0.6},
+
+            {"type": "move_joint", "axis": "T1_E", "target": 5.2,    "wait": 1},
+            {"type": "move_joint", "axis": "Z",    "target": 8.8,    "wait": 2},
+            {"type": "move_joint", "axis": "T0_E", "target": -1.26,  "wait": 1},
+            {"type": "move_joint", "axis": "Y",    "target": -360.0, "wait": 2},
+            {"type": "move_joint", "axis": "T0_E", "target": -0.42,  "wait": 1},
+
+            {"type": "home"}
+        ]
+    },
+
+    "waterbottle_routine_reverse": {
+        "steps": [
+            {"type": "home"},
+
+            {"type": "move_joint", "axis": "T1_E", "target": 5.2,    "wait": 1},
+            {"type": "move_joint", "axis": "T0_E", "target": -0.42,  "wait": 1},
+            {"type": "servo",      "value": 0,                        "wait": 0.4},
+            {"type": "move_joint", "axis": "X",    "target": 0.0,    "wait": 0.4},
+            {"type": "move_joint", "axis": "Y",    "target": -360.0, "wait": 2},
+            {"type": "move_joint", "axis": "Z",    "target": 8.8,    "wait": 2},
+            {"type": "servo",      "value": 90,                       "wait": 0.6},
+
+            {"type": "move_joint", "axis": "T0_E", "target": -1.26,  "wait": 1},
+            {"type": "move_joint", "axis": "Y",    "target": -432.0, "wait": 2},
+            {"type": "move_joint", "axis": "Z",    "target": 8.8,    "wait": 0.4},
+            {"type": "move_joint", "axis": "T1_E", "target": -5.2,   "wait": 1},
+
+            {"type": "move_joint", "axis": "Y",    "target": -648.0, "wait": 2},
+
+            {"type": "move_joint", "axis": "T0_E", "target": -1.26,  "wait": 1},
+            {"type": "move_joint", "axis": "Z",    "target": 13.2,   "wait": 2},
+            {"type": "move_joint", "axis": "T0_E", "target": -3.36,  "wait": 1},
+            {"type": "move_joint", "axis": "X",    "target": 0.0,    "wait": 0.4},
+            {"type": "servo",      "value": 0,                        "wait": 0.6},
+
+            {"type": "move_joint", "axis": "Z",    "target": 8.8,    "wait": 2},
+            {"type": "move_joint", "axis": "T1_E", "target": -5.2,   "wait": 1},
+            {"type": "move_joint", "axis": "T0_E", "target": -1.26,  "wait": 1},
+            {"type": "move_joint", "axis": "Y",    "target": -360.0, "wait": 2},
+            {"type": "move_joint", "axis": "T0_E", "target": -0.42,  "wait": 1},
+
+            {"type": "home"}
+        ]
+    },
+
+    "soap_routine1": {
+        "steps": [
+            {"type": "home"},
+
+            {"type": "move_joint", "axis": "T1_E", "target": -3.64,  "wait": 2},
+            {"type": "servo",      "value": 0,                        "wait": 2},
+            {"type": "move_joint", "axis": "T0_E", "target": -3.36,  "wait": 2},
+            {"type": "move_joint", "axis": "Y",    "target": -648.0, "wait": 2},
+            {"type": "move_joint", "axis": "Z",    "target": 17.6,   "wait": 2},
+            {"type": "servo",      "value": 90,                       "wait": 2},
+
+            {"type": "move_joint", "axis": "Z",    "target": 6.6,    "wait": 2},
+            {"type": "move_joint", "axis": "T0_E", "target": -0.84,  "wait": 2},
+            {"type": "move_joint", "axis": "Y",    "target": -432.0, "wait": 2},
+            {"type": "move_joint", "axis": "T1_E", "target": 0.0,    "wait": 2},
+            {"type": "move_joint", "axis": "Y",    "target": -648.0, "wait": 2},
+            {"type": "move_joint", "axis": "T0_E", "target": -3.36,  "wait": 2},
+            {"type": "move_joint", "axis": "Z",    "target": 17.6,   "wait": 2},
+            {"type": "servo",      "value": 0,                        "wait": 2},
+
+            {"type": "move_joint", "axis": "Y",    "target": -432.0, "wait": 2},
+            {"type": "move_joint", "axis": "T0_E", "target": -0.84,  "wait": 2},
+            {"type": "move_joint", "axis": "Z",    "target": 6.6,    "wait": 2},
+
+            {"type": "home"}
+        ]
+    },
+
+    "soap_routine_reverse": {
+        "steps": [
+            {"type": "home"},
+
+            {"type": "move_joint", "axis": "T1_E", "target": -2.6,   "wait": 1},
+            {"type": "move_joint", "axis": "T0_E", "target": -3.36,  "wait": 1},
+            {"type": "move_joint", "axis": "X",    "target": 0.0,    "wait": 0.4},
+            {"type": "move_joint", "axis": "Y",    "target": -576.0, "wait": 4},
+            {"type": "move_joint", "axis": "Z",    "target": 19.8,   "wait": 2},
+            {"type": "servo",      "value": 0,                        "wait": 0.4},
+            {"type": "servo",      "value": 90,                       "wait": 0.6},
+
+            {"type": "move_joint", "axis": "T1_E", "target": 2.6,    "wait": 1},
+            {"type": "move_joint", "axis": "Z",    "target": 8.8,    "wait": 2},
+            {"type": "move_joint", "axis": "T0_E", "target": -1.26,  "wait": 1},
+            {"type": "move_joint", "axis": "Y",    "target": -360.0, "wait": 2},
+            {"type": "move_joint", "axis": "T0_E", "target": -0.42,  "wait": 1},
+
+            {"type": "move_joint", "axis": "T1_E", "target": -2.6,   "wait": 1},
+
+            {"type": "move_joint", "axis": "T0_E", "target": -1.26,  "wait": 1},
+            {"type": "move_joint", "axis": "Y",    "target": -576.0, "wait": 4},
+            {"type": "move_joint", "axis": "T0_E", "target": -3.36,  "wait": 1},
+            {"type": "move_joint", "axis": "Z",    "target": 19.8,   "wait": 2},
+            {"type": "move_joint", "axis": "X",    "target": 0.0,    "wait": 0.4},
+            {"type": "move_joint", "axis": "T1_E", "target": 0.0,    "wait": 1},
+            {"type": "servo",      "value": 0,                        "wait": 0.6},
+
+            {"type": "move_joint", "axis": "T1_E", "target": -2.6,   "wait": 1},
+            {"type": "move_joint", "axis": "Z",    "target": 8.8,    "wait": 2},
+            {"type": "move_joint", "axis": "T0_E", "target": -1.26,  "wait": 1},
+            {"type": "move_joint", "axis": "Y",    "target": -360.0, "wait": 2},
+            {"type": "move_joint", "axis": "T0_E", "target": -0.42,  "wait": 1},
+
+            {"type": "home"}
+        ]
+    },
+
+    "bottle_routine1": {
+        "steps": [
+            {"type": "home"},
+
+            {"type": "servo",      "value": 0,                        "wait": 2},
+            {"type": "move_joint", "axis": "T1_E", "target": -2.6,    "wait": 2},
+            {"type": "move_joint", "axis": "T0_E", "target": -2.016,  "wait": 2},
+            {"type": "move_joint", "axis": "Y",    "target": -475.2,  "wait": 2},
+            {"type": "move_joint", "axis": "Z",    "target": 17.6,    "wait": 2},
+            {"type": "servo",      "value": 90,                        "wait": 2},
+
+            {"type": "move_joint", "axis": "Y",    "target": -187.2,  "wait": 2},
+            {"type": "move_joint", "axis": "T0_E", "target": 1.344,   "wait": 2},
+            {"type": "move_joint", "axis": "Z",    "target": 6.6,     "wait": 2},
+            {"type": "move_joint", "axis": "T1_E", "target": 2.6,     "wait": 2},
+            {"type": "move_joint", "axis": "Y",    "target": -475.2,  "wait": 2},
+            {"type": "move_joint", "axis": "T0_E", "target": -2.016,  "wait": 2},
+            {"type": "move_joint", "axis": "Z",    "target": 17.6,    "wait": 2},
+            {"type": "servo",      "value": 0,                         "wait": 2},
+
+            {"type": "move_joint", "axis": "Y",    "target": -187.2,  "wait": 2},
+            {"type": "move_joint", "axis": "T0_E", "target": 1.344,   "wait": 2},
+            {"type": "move_joint", "axis": "Z",    "target": 6.6,     "wait": 2},
+
+            {"type": "home"}
+        ]
+    },
+
+    "box1_routine1": {
+        "steps": [
+            {"type": "home"},
+            {"type": "move_joint", "axis": "T0_E", "target": 3.36,   "wait": 2},
+            {"type": "move_joint", "axis": "T1_E", "target": -3.64,  "wait": 2},
+            {"type": "servo",      "value": 0,                        "wait": 2},
+            {"type": "move_joint", "axis": "Z",    "target": 8.8,    "wait": 2},
+            {"type": "move_joint", "axis": "Y",    "target": -432.0, "wait": 2},
+            {"type": "move_joint", "axis": "T1_E", "target": -3.64,  "wait": 2},
+            {"type": "servo",      "value": 90,                       "wait": 2},
+
+            {"type": "move_joint", "axis": "Z",    "target": 2.2,    "wait": 2},
+            {"type": "move_joint", "axis": "Y",    "target": -288.0, "wait": 2},
+            {"type": "move_joint", "axis": "T0_E", "target": 0.84,   "wait": 2},
+
+            {"type": "move_joint", "axis": "T1_E", "target": 0.0,    "wait": 2},
+            {"type": "move_joint", "axis": "Y",    "target": -576.0, "wait": 2},
+            {"type": "move_joint", "axis": "Z",    "target": 15.4,   "wait": 2},
+            {"type": "move_joint", "axis": "T0_E", "target": 1.26,   "wait": 2},
+            {"type": "servo",      "value": 0,                        "wait": 2},
+
+            {"type": "move_joint", "axis": "Z",    "target": 2.2,    "wait": 2},
+            {"type": "move_joint", "axis": "Y",    "target": -288.0, "wait": 2},
+            {"type": "move_joint", "axis": "T0_E", "target": 0.84,   "wait": 2},
+
+            {"type": "home"}
+        ]
+    },
+
+    "box3_routine1": {
+        "steps": [
+            {"type": "home"},
+
+            {"type": "move_joint", "axis": "T1_E", "target": -3.64,  "wait": 2},
+            {"type": "servo",      "value": 0,                        "wait": 2},
+            {"type": "move_joint", "axis": "Y",    "target": -576.0, "wait": 2},
+            {"type": "move_joint", "axis": "Z",    "target": 15.4,   "wait": 2},
+            {"type": "move_joint", "axis": "T0_E", "target": 1.26,   "wait": 2},
+            {"type": "servo",      "value": 90,                       "wait": 2},
+
+            {"type": "move_joint", "axis": "Z",    "target": 2.2,    "wait": 2},
+            {"type": "move_joint", "axis": "Y",    "target": -288.0, "wait": 2},
+            {"type": "move_joint", "axis": "T0_E", "target": 0.84,   "wait": 2},
+            {"type": "move_joint", "axis": "T1_E", "target": 0.0,    "wait": 2},
+            {"type": "move_joint", "axis": "Z",    "target": 8.8,    "wait": 2},
+            {"type": "move_joint", "axis": "T0_E", "target": 1.26,   "wait": 2},
+            {"type": "move_joint", "axis": "Y",    "target": -432.0, "wait": 2},
+            {"type": "servo",      "value": 0,                        "wait": 2},
+
+            {"type": "move_joint", "axis": "Z",    "target": 2.2,    "wait": 2},
+            {"type": "move_joint", "axis": "Y",    "target": -288.0, "wait": 2},
+            {"type": "move_joint", "axis": "T0_E", "target": 0.84,   "wait": 2},
+
+            {"type": "home"}
+        ]
+    },
+
+    "box2_routine1": {
+        "steps": [
+            {"type": "home"},
+
+            {"type": "move_joint", "axis": "T1_E", "target": -3.64,  "wait": 2},
+            {"type": "servo",      "value": 0,                        "wait": 2},
+            {"type": "move_joint", "axis": "Z",    "target": 11.0,   "wait": 2},
+            {"type": "move_joint", "axis": "Y",    "target": -532.8, "wait": 2},
+            {"type": "move_joint", "axis": "T0_E", "target": 2.94,   "wait": 2},
+            {"type": "servo",      "value": 90,                       "wait": 2},
+
+            {"type": "move_joint", "axis": "Z",    "target": 8.8,    "wait": 2},
+            {"type": "move_joint", "axis": "Y",    "target": -360.0, "wait": 2},
+            {"type": "move_joint", "axis": "T0_E", "target": 2.94,   "wait": 2},
+            {"type": "move_joint", "axis": "T1_E", "target": 0.0,    "wait": 2},
+            {"type": "move_joint", "axis": "Z",    "target": 11.0,   "wait": 2},
+            {"type": "move_joint", "axis": "Y",    "target": -532.8, "wait": 2},
+            {"type": "move_joint", "axis": "T0_E", "target": 2.94,   "wait": 2},
+            {"type": "servo",      "value": 0,                        "wait": 2},
+
+            {"type": "move_joint", "axis": "Z",    "target": 8.8,    "wait": 2},
+            {"type": "move_joint", "axis": "Y",    "target": -360.0, "wait": 2},
+            {"type": "move_joint", "axis": "T0_E", "target": 2.94,   "wait": 2},
+
+            {"type": "home"}
+        ]
+    },
+
+
+"box1_routine_reverse": {
+    "steps": [
+        {"type": "home"},
+        {"type": "move_joint", "axis": "T0_E", "target": 1.26,   "wait": 2},
+        {"type": "move_joint", "axis": "T1_E", "target": 0,  "wait": 2},
+        {"type": "servo",      "value": 0,                        "wait": 2},
+        {"type": "move_joint", "axis": "Z",    "target": 15.4,   "wait": 2},
+        {"type": "move_joint", "axis": "Y",    "target": -576.0, "wait": 2},
+        {"type": "move_joint", "axis": "T0_E", "target": 1.26,   "wait": 2},
+        {"type": "servo",      "value": 90,                       "wait": 2},
+
+        {"type": "move_joint", "axis": "Z",    "target": 2.2,    "wait": 2},
+        {"type": "move_joint", "axis": "Y",    "target": -288.0, "wait": 2},
+        {"type": "move_joint", "axis": "T0_E", "target": 0.84,   "wait": 2},
+
+        {"type": "move_joint", "axis": "T1_E", "target": -3.64,    "wait": 2},
+        {"type": "move_joint", "axis": "Y",    "target": -432.0, "wait": 2},
+        {"type": "move_joint", "axis": "Z",    "target": 8.8,    "wait": 2},
+        {"type": "move_joint", "axis": "T0_E", "target": 3.36,   "wait": 2},
+        {"type": "servo",      "value": 0,                        "wait": 2},
+
+        {"type": "move_joint", "axis": "Z",    "target": 2.2,    "wait": 2},
+        {"type": "move_joint", "axis": "Y",    "target": -288.0, "wait": 2},
+        {"type": "move_joint", "axis": "T0_E", "target": 0.84,   "wait": 2},
+
+        {"type": "home"}
+    ]
+},
+
+"box2_routine_reverse": {
+    "steps": [
+        {"type": "home"},
+
+        {"type": "move_joint", "axis": "T1_E", "target": 0.0,    "wait": 2},
+        {"type": "servo",      "value": 0,                        "wait": 2},
+        {"type": "move_joint", "axis": "Z",    "target": 11.0,   "wait": 2},
+        {"type": "move_joint", "axis": "Y",    "target": -532.8, "wait": 2},
+        {"type": "move_joint", "axis": "T0_E", "target": 2.94,   "wait": 2},
+        {"type": "servo",      "value": 90,                       "wait": 2},
+
+        {"type": "move_joint", "axis": "Z",    "target": 8.8,    "wait": 2},
+        {"type": "move_joint", "axis": "Y",    "target": -360.0, "wait": 2},
+        {"type": "move_joint", "axis": "T0_E", "target": 2.94,   "wait": 2},
+        {"type": "move_joint", "axis": "T1_E", "target": -3.64,  "wait": 2},
+        {"type": "move_joint", "axis": "Z",    "target": 11.0,   "wait": 2},
+        {"type": "move_joint", "axis": "Y",    "target": -532.8, "wait": 2},
+        {"type": "move_joint", "axis": "T0_E", "target": 2.94,   "wait": 2},
+        {"type": "servo",      "value": 0,                        "wait": 2},
+
+        {"type": "move_joint", "axis": "Z",    "target": 8.8,    "wait": 2},
+        {"type": "move_joint", "axis": "Y",    "target": -360.0, "wait": 2},
+        {"type": "move_joint", "axis": "T0_E", "target": 2.94,   "wait": 2},
+
+        {"type": "home"}
+    ]
+},
+
+"box3_routine_reverse": {
+    "steps": [
+        {"type": "home"},
+
+        {"type": "move_joint", "axis": "T1_E", "target": 0.0,    "wait": 2},
+        {"type": "servo",      "value": 0,                        "wait": 2},
+        {"type": "move_joint", "axis": "Y",    "target": -432.0, "wait": 2},
+        {"type": "move_joint", "axis": "Z",    "target": 8.8,    "wait": 2},
+        {"type": "move_joint", "axis": "T0_E", "target": 1.26,   "wait": 2},
+        {"type": "servo",      "value": 90,                       "wait": 2},
+
+        {"type": "move_joint", "axis": "Z",    "target": 2.2,    "wait": 2},
+        {"type": "move_joint", "axis": "Y",    "target": -288.0, "wait": 2},
+        {"type": "move_joint", "axis": "T0_E", "target": 0.84,   "wait": 2},
+        {"type": "move_joint", "axis": "T1_E", "target": -3.64,  "wait": 2},
+        {"type": "move_joint", "axis": "Y",    "target": -576.0, "wait": 2},
+        {"type": "move_joint", "axis": "Z",    "target": 15.4,   "wait": 2},
+        {"type": "move_joint", "axis": "T0_E", "target": 1.26,   "wait": 2},
+        {"type": "servo",      "value": 0,                        "wait": 2},
+
+        {"type": "move_joint", "axis": "Z",    "target": 2.2,    "wait": 2},
+        {"type": "move_joint", "axis": "Y",    "target": -288.0, "wait": 2},
+        {"type": "move_joint", "axis": "T0_E", "target": 0.84,   "wait": 2},
+
+        {"type": "home"}
+    ]
+}
+}
